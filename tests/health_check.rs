@@ -17,5 +17,6 @@ async fn health_check_works() {
 }
 
 async fn spawn_app() -> Result<(), std::io::Error> {
-    todo!()
+    let server = newsletter::run().expect("Fialed to bind address.");
+    let _ = tokio::spawn(server);
 }
