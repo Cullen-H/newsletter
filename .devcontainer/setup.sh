@@ -26,11 +26,17 @@ echo \
   "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
   sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 
-# Update
+# Update mirrors
 apt-get update
 
 # Install Docker Engine
 apt-get install -y docker-ce docker-ce-cli containerd.io
+
+# Update mirrors
+apt-get update
+
+# Install postgres and utlities
+DEBIAN_FRONTEND=noninteractive apt-get install -y postgresql postgresql-contrib
 
 ## Install rustup and common components
 curl https://sh.rustup.rs -sSf | sh -s -- -y 
@@ -42,6 +48,7 @@ rustup component add clippy --toolchain nightly
 
 cargo install cargo-expand
 cargo install cargo-edit
+cargo install cargo-watch
 
 ## setup and install oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"

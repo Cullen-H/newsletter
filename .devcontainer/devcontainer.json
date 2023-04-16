@@ -1,28 +1,29 @@
 {
-    "name": "Codespaces Rust Starter",
-    "dockerFile": "Dockerfile",
-    "customizations": {
-        "vscode": {
-            "extensions": [
-                "cschleiden.vscode-github-actions",
-                "ms-vsliveshare.vsliveshare",
-                "matklad.rust-analyzer",
-                "serayuzgur.crates",
-                "vadimcn.vscode-lldb"
-            ],
-            "settings": {
-                "editor.formatOnSave": true,
-                "terminal.integrated.profiles.linux": {
-                    "zsh": {
-                        "path": "/bin/zsh"
-                    }
-                },
-                "terminal.integrated.defaultProfile.linux": "zsh",
-                "files.exclude": {
-                    "**/CODE_OF_CONDUCT.md": true,
-                    "**/LICENSE": true
-                }
-            }
+  "name": "Codespaces Rust Starter",
+  "dockerFile": "Dockerfile",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "cschleiden.vscode-github-actions",
+        "ms-vsliveshare.vsliveshare",
+        "matklad.rust-analyzer",
+        "serayuzgur.crates",
+        "vadimcn.vscode-lldb"
+      ],
+      "settings": {
+        "editor.formatOnSave": true,
+        "terminal.integrated.profiles.linux": {
+          "zsh": {
+            "path": "/bin/zsh"
+          }
+        },
+        "terminal.integrated.defaultProfile.linux": "zsh",
+        "files.exclude": {
+          "**/CODE_OF_CONDUCT.md": true,
+          "**/LICENSE": true
         }
+      }
     }
+  },
+  "postStartCommand": "service postgresql start"
 }
