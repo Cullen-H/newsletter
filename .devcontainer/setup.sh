@@ -3,6 +3,7 @@ apt-get update
 apt-get install -y \
   curl \
   git \
+  gnupg \
   gnupg2 \
   jq \
   sudo \
@@ -11,7 +12,25 @@ apt-get install -y \
   build-essential \
   openssl \
   pkg-config \
-  libssl-dev
+  libssl-dev \
+  ca-certificates
+
+# Add Docker's GPG key
+sudo install -m 0755 -d /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+sudo chmod a+r /etc/apt/keyrings/docker.gpg
+
+# Add Docker's repository
+echo \
+  "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+# Update
+apt-get update
+
+# Install Docker Engine
+apt-get install -y docker-ce docker-ce-cli containerd.io
 
 ## Install rustup and common components
 curl https://sh.rustup.rs -sSf | sh -s -- -y 
