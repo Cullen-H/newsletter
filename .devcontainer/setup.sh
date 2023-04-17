@@ -13,7 +13,8 @@ apt-get install -y \
   openssl \
   pkg-config \
   libssl-dev \
-  ca-certificates
+  ca-certificates \
+  locales
 
 # Add Docker's GPG key
 sudo install -m 0755 -d /etc/apt/keyrings
@@ -38,7 +39,7 @@ apt-get update
 # Install postgres and utlities
 DEBIAN_FRONTEND=noninteractive apt-get install -y postgresql postgresql-contrib
 
-## Install rustup and common components
+# Install rustup and common components
 curl https://sh.rustup.rs -sSf | sh -s -- -y 
 rustup install nightly
 rustup component add rustfmt
